@@ -1,0 +1,54 @@
+{
+  "manifest_version": 3,
+  "name": "VulnLens AI - Intelligent VAPT Assistant",
+  "version": "1.0.1",
+  "description": "AI-assisted Vulnerability Assessment & Penetration Testing (VAPT) helper. Passively scans the active page for common web-security weaknesses and generates an AI-explained report with remediation guidance. For use only on sites you are authorized to test.",
+  "author": "Yash M. Panchal & Umang K. Nagwadiya",
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "vulnlens-ai@yashpanchal-umangnagwadiya.dev",
+      "strict_min_version": "109.0"
+    }
+  },
+
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "webRequest",
+    "downloads"
+  ],
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+
+  "background": {
+    "scripts": ["local_engine.js", "background.js"]
+  },
+
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle",
+      "all_frames": true,
+      "match_about_blank": true
+    }
+  ]
+}

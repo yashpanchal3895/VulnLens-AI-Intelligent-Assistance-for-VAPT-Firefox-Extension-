@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>VulnLens AI</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header class="header">
+    <img src="icons/icon48.png" alt="VulnLens AI" class="logo" />
+    <div style="flex: 1;">
+      <h1>VulnLens AI</h1>
+      <p class="subtitle">Intelligent VAPT Assistant · Firefox</p>
+    </div>
+    <div id="connectionStatus" class="ollama-status offline">Ollama Offline</div>
+  </header>
+
+  <main>
+    <div class="scope-notice">
+      Only scan sites you own or are authorized to test.
+    </div>
+
+    <button id="scanBtn" class="primary-btn">Scan This Page</button>
+
+    <div id="status" class="status"></div>
+
+    <section id="summary" class="summary hidden">
+      <div class="score-ring">
+        <span id="riskScore">--</span>
+      </div>
+      <div class="summary-text">
+        <p><strong id="findingsCount">0</strong> findings</p>
+        <p id="riskLabel">Risk level: --</p>
+      </div>
+    </section>
+
+    <ul id="findingsList" class="findings-list"></ul>
+
+    <div class="actions">
+      <button id="analyzeBtn" class="secondary-btn" disabled>AI Analysis (Free)</button>
+      <button id="reportPdfBtn" class="secondary-btn" disabled>Generate PDF Report</button>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-toggles">
+      <label class="settings-toggle">
+        <input type="checkbox" id="settingsToggle" />
+        API Settings
+      </label>
+      <label class="history-toggle">
+        <input type="checkbox" id="historyToggle" />
+        Scan History
+      </label>
+    </div>
+    <div id="settingsPanel" class="settings-panel hidden">
+      <label>AI Provider</label>
+      <select id="aiProvider">
+        <option value="ollama">Local Ollama (100% Free & Private)</option>
+        <option value="deepseek_cloud">Cloud API — AgentRouter (deepseek-v4-flash)</option>
+      </select>
+      <div id="deepseekSettings" class="hidden" style="display:flex; flex-direction:column; gap:6px;">
+        <label>API Key</label>
+        <input type="password" id="deepseekApiKey" placeholder="sk-..." />
+        <label>Cloud Endpoint URL</label>
+        <input type="text" id="cloudEndpoint" placeholder="https://agentrouter.org/v1/chat/completions" style="font-size:10px;" />
+        <label>Model Name</label>
+        <input type="text" id="cloudModel" placeholder="deepseek-v4-flash" />
+        <button id="testApiBtn" class="secondary-btn" style="margin-top:4px;">Test API Key</button>
+        <div id="apiTestResult" class="status" style="margin:0; min-height:14px;"></div>
+      </div>
+      <div id="ollamaSettings" style="display:flex; flex-direction:column; gap:6px;">
+        <label>Ollama API URL</label>
+        <input type="text" id="apiUrl" placeholder="http://127.0.0.1:11434" />
+        <label>Ollama Model</label>
+        <select id="ollamaModel">
+          <option value="">Detecting local models...</option>
+        </select>
+      </div>
+      <button id="saveSettings" class="secondary-btn">Save</button>
+    </div>
+    <div id="historyPanel" class="history-panel hidden">
+      <ul id="historyList" class="history-list"></ul>
+      <button id="clearHistoryBtn" class="danger-btn">Clear History</button>
+    </div>
+    <p class="credit">Developed by Yash M. Panchal &amp; Umang K. Nagwadiya</p>
+  </footer>
+
+  <script src="local_engine.js"></script>
+  <script src="report.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

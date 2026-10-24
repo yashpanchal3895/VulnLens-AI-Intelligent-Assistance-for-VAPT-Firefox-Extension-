@@ -1,0 +1,22 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:#fff}</style></head>
+<body><svg xmlns="http://www.w3.org/2000/svg" width="760" height="360" viewBox="0 0 760 360" font-family="Times New Roman, serif" font-size="13">
+<rect x="0" y="0" width="760" height="360" fill="#fff"/>
+<text x="20" y="26" font-size="15" font-weight="bold">Fig 4.1  System Architecture of VulnLens AI</text>
+<!-- top: user -->
+<rect x="300" y="40" width="160" height="40" rx="6" fill="#1d4ed8"/><text x="380" y="65" fill="#fff" text-anchor="middle">Firefox user (popup)</text>
+<!-- middle: two engine boxes -->
+<rect x="40" y="130" width="200" height="60" rx="6" fill="#0f2b5b"/><text x="140" y="155" fill="#fff" text-anchor="middle">background.js</text><text x="140" y="175" fill="#cbd5e1" font-size="11" text-anchor="middle">header capture + analysis</text>
+<rect x="280" y="130" width="200" height="60" rx="6" fill="#0f2b5b"/><text x="380" y="155" fill="#fff" text-anchor="middle">content.js</text><text x="380" y="175" fill="#cbd5e1" font-size="11" text-anchor="middle">DOM / page scan</text>
+<rect x="520" y="130" width="200" height="60" rx="6" fill="#0f2b5b"/><text x="620" y="155" fill="#fff" text-anchor="middle">report.js</text><text x="620" y="175" fill="#cbd5e1" font-size="11" text-anchor="middle">self-contained HTML</text>
+<!-- bottom: AI tiers -->
+<rect x="40" y="250" width="200" height="56" rx="6" fill="#15803d"/><text x="140" y="273" fill="#fff" text-anchor="middle">Tier 1 Cloud</text><text x="140" y="293" fill="#dcfce7" font-size="11" text-anchor="middle">deepseek-v4-flash</text>
+<rect x="280" y="250" width="200" height="56" rx="6" fill="#15803d"/><text x="380" y="273" fill="#fff" text-anchor="middle">Tier 2 Local</text><text x="380" y="293" fill="#dcfce7" font-size="11" text-anchor="middle">Ollama (qwen/gemma)</text>
+<rect x="520" y="250" width="200" height="56" rx="6" fill="#b45309"/><text x="620" y="273" fill="#fff" text-anchor="middle">Tier 3 Offline</text><text x="620" y="293" fill="#fde68a" font-size="11" text-anchor="middle">31-rule engine</text>
+<!-- arrows -->
+<g stroke="#444" stroke-width="1" fill="none">
+<path d="M380,80 L140,130"/><path d="M380,80 L380,130"/><path d="M380,80 L620,130"/>
+<path d="M140,190 L140,250"/><path d="M380,190 L380,250"/><path d="M620,190 L620,250"/>
+<path d="M140,225 L140,250" /><path d="M380,225 L380,250"/>
+</g>
+<text x="380" y="345" font-size="11" fill="#666" text-anchor="middle">Graceful degradation: cloud → local → offline rule engine</text>
+</svg></body></html>
